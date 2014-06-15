@@ -1,0 +1,19 @@
+#!/bin/bash
+read shell
+case $shell in
+python)
+	echo "ipython;"
+	;;
+node)
+	echo "node;"
+	;;
+coffee)
+	echo "coffee;"
+	;;
+php)
+	echo "php -a;"
+	;;
+erlang)
+	echo "erl;"
+	;;
+esac

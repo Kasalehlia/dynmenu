@@ -1,0 +1,5 @@
+#!/bin/bash
+read cmd
+echo $cmd
+
+sqlite3 ~/.menu/main.sqlite "UPDATE commands SET weight = weight+1 WHERE cmd='$cmd';"
