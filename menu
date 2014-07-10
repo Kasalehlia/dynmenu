@@ -2,7 +2,7 @@
 if [ -e ~/.menu/$1.menu ]; then
 	cmd=`~/.menu/$1.menu $2 | dmenu -i`
 elif [ -e ~/.menu/$1.sqlite ]; then
-	cmd=`sqlite3 -line ~/.menu/$1.sqlite "SELECT cmd FROM commands ORDER BY weight DESC" | grep -v "^$" | cut -b 9- | dmenu -i`
+	cmd=`sqlite3 -line ~/.menu/$1.sqlite "SELECT name FROM commands ORDER BY weight DESC" | grep -v "^$" | cut -b 9- | dmenu -i`
 else
 	echo "menu file not found"
 	exit

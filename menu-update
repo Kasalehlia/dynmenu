@@ -1,0 +1,25 @@
+#!/bin/bash
+# Fills the specified menu database with any missing entries
+# from any PATH directory
+menu="main"
+if [[ -n $1 ]]; then
+	menu=$1
+fi
+if [[ ! -e ~/.menu/${menu}.sqlite ]]; then
+	echo "menu file not found"
+	exit 1
+fi
+
+commands_to_be_added()  {
+	existing=$(sqlite3 -line ~/.menu/${menu}.sqlite "SELECT name FROM commands ORDER BY weight DESC" | grep -v "^$" | cut -b 9- | sort)
+	IFS=':'
+	(for dir in $PATH; do
+		ls -1 "$dir"
+	done) | sort -u | comm -13 <(echo "$existing") -
+}
+
+IFS=$'\n'
+for c in $(commands_to_be_added); do
+	echo "$c|$c|0"
+done | sqlite3 -separator "|" ~/.menu/${menu}.sqlite ".import /dev/stdin commands"
+

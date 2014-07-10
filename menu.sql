@@ -1,4 +1,5 @@
 CREATE TABLE "commands" (
-    "cmd" TEXT NOT NULL UNIQUE PRIMARY KEY,
+    "name" TEXT NOT NULL UNIQUE PRIMARY KEY,
+    "cmd" TEXT NOT NULL,
     "weight" INTEGER NOT NULL DEFAULT (0)
 );
