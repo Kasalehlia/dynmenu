@@ -1,3 +1,9 @@
 #!/bin/bash
-read name
-sqlite3 ~/.menu/main.sqlite "UPDATE commands SET weight = weight+1 WHERE name='$name';SELECT cmd FROM commands WHERE name='$name';"
+read input
+name=${input%% *}
+output=$(sqlite3 ~/.menu/main.sqlite "UPDATE commands SET weight = weight+1 WHERE name='$name';SELECT cmd FROM commands WHERE name='$name';")
+if [[ $input == $name ]]; then
+	echo $output
+else
+	echo $input
+fi
