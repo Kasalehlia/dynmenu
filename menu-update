@@ -19,7 +19,12 @@ commands_to_be_added()  {
 }
 
 IFS=$'\n'
-for c in $(commands_to_be_added); do
+ctba=$(commands_to_be_added)
+for c in $(echo "$ctba"); do
 	echo "$c|$c|0"
 done | sqlite3 -separator "|" ~/.menu/${menu}.sqlite ".import /dev/stdin commands"
-
+if [[ -z $ctba ]]; then
+	echo "dynmenu: no commands added"
+else
+	echo "dynmenu: $(echo "$ctba" | wc -l) commands added"
+fi

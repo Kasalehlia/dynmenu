@@ -20,4 +20,4 @@ elif [[ "$cmd" == *\? ]]; then
 	cmd="m ${cmd%?}"
 fi
 
-exec $cmd
+$cmd
