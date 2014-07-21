@@ -32,5 +32,6 @@ cat ~/.menu/menu.sql|sqlite3 ~/.menu/main.sqlite
 # rerun step 3 for new commands
 ```
 
-Optional: On Debian/Ubuntu you can copy 99menu-update to /etc/apt/apt.conf.d/ to register `menu-update` as apt hook
+Optional: On Debian/Ubuntu you can copy 99menu-update to /etc/apt/apt.conf.d/ to register `menu-update` as apt hook.
+Remember to adjust the path to the `menu-update` script according to your setup.
 
