@@ -8,16 +8,30 @@ else
 	exit
 fi
 
+if [[ "$cmd" == *\; ]]; then
+	prefix="urxvt -e "
+	cmd="${cmd%\;}"
+elif [[ "$cmd" == *\! ]]; then
+	prefix="gksu "
+	cmd="${cmd%!}"
+elif [[ "$cmd" == *\? ]]; then
+	prefix="m "
+	cmd="${cmd%?}"
+fi
+
 if [ -e ~/.menu/$1.post ]; then
 	cmd=`echo $cmd | ~/.menu/$1.post $2`
 fi
 
 if [[ "$cmd" == *\; ]]; then
-	cmd="urxvt -e ${cmd%\;}"
+	prefix="urxvt -e "
+	cmd="${cmd%\;}"
 elif [[ "$cmd" == *\! ]]; then
-	cmd="gksu ${cmd%!}"
+	prefix="gksu "
+	cmd="${cmd%!}"
 elif [[ "$cmd" == *\? ]]; then
-	cmd="m ${cmd%?}"
+	prefix="m "
+	cmd="${cmd%?}"
 fi
 
-$cmd
+$SHELL -c "$prefix$cmd"
