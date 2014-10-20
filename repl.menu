@@ -1,2 +1,2 @@
 #!/bin/bash
-echo -e "python\nnode\ncoffee\nphp\nerlang"
+echo -e "python\nnode\ncoffee\nphp\nerlang\nruby"

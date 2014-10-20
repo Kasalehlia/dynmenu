@@ -16,4 +16,7 @@ php)
 erlang)
 	echo "erl;"
 	;;
+ruby)
+	echo "irb;"
+	;;
 esac
